@@ -16,6 +16,9 @@ contract demo{
     
     // function to create tweet and add to object
     function createTweet(string memory _content) public {
+
+        // limit the length  of a tweet to 280 characters
+        require(bytes(_content).length<=280,"d");
         Tweet memory newTweet = Tweet({
             author: msg.sender,
             content: _content,
