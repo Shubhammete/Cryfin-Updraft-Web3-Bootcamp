@@ -18,7 +18,7 @@ contract demo{
     function createTweet(string memory _content) public {
 
         // limit the length  of a tweet to 280 characters
-        require(bytes(_content).length<=280,"d");
+        require(bytes(_content).length<=280,"Tweet must be less than 280 chars");
         Tweet memory newTweet = Tweet({
             author: msg.sender,
             content: _content,
