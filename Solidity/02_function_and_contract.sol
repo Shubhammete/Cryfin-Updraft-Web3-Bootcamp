@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-// contact is like a class in solidity where all data and functions reside
+// contract is like a class in solidity where all data and functions reside
 contract SimpleStorage{
     uint public favno;
 
