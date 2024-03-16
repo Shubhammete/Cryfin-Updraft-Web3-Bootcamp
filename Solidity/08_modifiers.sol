@@ -7,6 +7,7 @@ contract demo{
         owner = msg.sender;
     }
 
+    // Allows to call function when condition in modifier is satisfied
     modifier onlyOwner(){
         require(msg.sender == owner, "You are not owner");
         _;
