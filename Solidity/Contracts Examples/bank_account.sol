@@ -8,12 +8,14 @@ contract PausableToken {
     bool public paused;
     mapping (address => uint) balance;
 
+    // use to initate the values btw it is called when the contract is deployed on blockchain 
     constructor(){
         owner = msg.sender;
         paused = false;
         balance[owner] = 1000;
     }
 
+    // modifier is something which check the condition so whether we can call function or not
     modifier onlyOwner(){
         require(owner == msg.sender,"You are not owner!!");
         _;
@@ -33,7 +35,7 @@ contract PausableToken {
     }
 
     function transfer(address add, uint amount) public  onlyOwner onlyPaused{
-        require(amount<=balance[owner],"Low balance");
+        require(amount<=balance[owner],"Insufficient balance");
         balance[owner] -= amount;
         balance[add] += amount;
     }
