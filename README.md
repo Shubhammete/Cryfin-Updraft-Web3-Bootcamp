@@ -1,1 +1,1 @@
-# Cryfin-Updraft-Web3-Bootcamp
+# Web3-Bootcamp
