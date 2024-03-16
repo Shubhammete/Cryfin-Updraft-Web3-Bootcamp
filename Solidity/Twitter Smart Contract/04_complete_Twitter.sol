@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 contract Twitter {
-
     // address of owner
     address public owner;
 
@@ -19,9 +18,22 @@ contract Twitter {
     }
 
     // event to fire when tweet is created
-    event createTweetEvent(uint id, address author, string content, uint timestamp);
+    event createTweetEvent(
+        uint id,
+        address author,
+        string content,
+        uint timestamp
+    );
 
-    // constructor to initialize owner 
+    //event to call when tweet is liked
+    event likeTweetEvent(
+        address liker,
+        address author,
+        uint id,
+        uint likecount
+    );
+
+    // constructor to initialize owner
     constructor() {
         owner = msg.sender;
     }
@@ -52,12 +64,21 @@ contract Twitter {
         });
 
         tweets[msg.sender].push(newtweet);
+
+        // emiting event when tweet is created
+        emit createTweetEvent(
+            newtweet.id,
+            newtweet.author,
+            newtweet.content,
+            newtweet.timeStamp
+        );
     }
 
     // function to like tweet
     function like(address author, uint id) external {
         require(tweets[author][id].id == id, "Tweet does not exists");
         tweets[author][id].likes++;
+        emit likeTweetEvent(msg.sender, author, id, tweets[author][id].likes);
     }
 
     // function to dislike tweet
