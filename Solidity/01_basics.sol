@@ -9,6 +9,5 @@ contract SimpleStorage{
     uint public myUint;
     bool public myBool;
     string public myString;
-    byte public myByte;
-
+    bytes public myByte;
 }
