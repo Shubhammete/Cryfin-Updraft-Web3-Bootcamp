@@ -33,6 +33,14 @@ contract Twitter {
         uint likecount
     );
 
+    //event to call when tweet is unliked
+    event unlikeTweetEvent(
+        address unliker,
+        address author,
+        uint id,
+        uint likecount
+    );
+
     // constructor to initialize owner
     constructor() {
         owner = msg.sender;
@@ -86,6 +94,8 @@ contract Twitter {
         require(tweets[author][id].id == id, "Tweet does not exists");
         require(tweets[author][id].likes > 0, "Tweet has no likes");
         tweets[author][id].likes--;
+
+        emit unlikeTweetEvent(msg.sender, author, id, tweets[author][id].likes);
     }
 
     // function to get tweet
